@@ -17,3 +17,16 @@ In order to communicate with other nodes (ServiceBrokers) you need to configure 
 ![networking](https://moleculer.services/docs/0.14/assets/networking.svg)
 
 I use nats in this example.
+
+## library-services
+
+### required packages
+
+-   moleculer
+-   dotenv
+-   nats
+-   mongoose
+
+### services
+
+The Service represents a microservice in the Moleculer framework. You can define actions and subscribe to events. To create a service you must define a schema: name, version, settings, actions, methods, events.
