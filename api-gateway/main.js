@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const moleculerBroker = require("./brokers/moleculer.broker");
 
 moleculerBroker.start().then(() => {
