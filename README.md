@@ -10,7 +10,7 @@
 -   dotenv
 -   nats
 
-### networking [more](https://moleculer.services/docs/0.14/networking)
+### networking - [docs](https://moleculer.services/docs/0.14/networking)
 
 In order to communicate with other nodes (ServiceBrokers) you need to configure a transporter. Most of the supported transporters connect to a central message broker that provide a reliable way of exchanging messages among remote nodes. These message brokers mainly support publish/subscribe messaging pattern.
 
@@ -27,6 +27,6 @@ I use nats in this example.
 -   nats
 -   mongoose
 
-### services [more](https://moleculer.services/docs/0.14/services)
+### services - [docs](https://moleculer.services/docs/0.14/services)
 
 The Service represents a microservice in the Moleculer framework. You can define actions and subscribe to events. To create a service you must define a schema: name, version, settings, actions, methods, events.

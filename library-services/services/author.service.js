@@ -1,20 +1,48 @@
 const authorModel = require("../models/author.model");
+const responseHelper = require("../helpers/response.helper");
 
 const services = {
     name: "author",
     actions: {
         async list(ctx) {
-            return await authorModel.find();
+            try {
+                const authorList = await authorModel.find();
+
+                return responseHelper.ok(authorList);
+            } catch (error) {
+                console.log("author list error => ", error?.message);
+
+                return responseHelper.unknown(error?.message);
+            }
         },
         async detail(ctx) {
             const { id } = ctx.params;
-            return await authorModel.findById(id);
+
+            try {
+                const author = await authorModel.findById(id);
+                if (!author)
+                    return responseHelper.notFound("Author is not found.");
+
+                return responseHelper.ok(author);
+            } catch (error) {
+                console.log("author detail error => ", error?.message);
+
+                return responseHelper.unknown(error?.message);
+            }
         },
         async create(ctx) {
             const payload = ctx.params;
             const { body } = payload;
 
-            return await authorModel.create(body);
+            try {
+                await authorModel.create(body);
+
+                return responseHelper.created("Author is created.");
+            } catch (error) {
+                console.log("author create error => ", error?.message);
+
+                return responseHelper.unknown(error?.message);
+            }
         },
         async update(ctx) {
             const payload = ctx.params;
