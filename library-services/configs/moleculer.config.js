@@ -69,10 +69,10 @@ module.exports = {
     validator: true,
     errorRegenerator: null,
 
-    metrics: {
-        enabled: true,
-        reporter: ["Console"],
-    },
+    // metrics: {
+    //     enabled: true,
+    //     reporter: ["Console"],
+    // },
 
     tracing: {
         enabled: true,
