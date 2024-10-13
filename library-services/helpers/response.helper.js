@@ -3,7 +3,7 @@ const helpers = {
         code: 200,
         status: "OK",
         message: message ? message : "Success",
-        data: data ? data : null,
+        data: data && data,
     }),
     created: (message) => ({
         code: 201,

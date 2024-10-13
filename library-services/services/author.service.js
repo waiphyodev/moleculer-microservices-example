@@ -48,12 +48,35 @@ const services = {
             const payload = ctx.params;
             const { id, body } = payload;
 
-            return await authorModel.findByIdAndUpdate(id, body);
+            try {
+                const updatedAuthor = await authorModel.findByIdAndUpdate(
+                    id,
+                    body
+                );
+                if (!updatedAuthor)
+                    return responseHelper.notFound("Author is not found.");
+
+                return responseHelper.ok(null, "Author is updated.");
+            } catch (error) {
+                console.log("author update error => ", error?.message);
+
+                return responseHelper.unknown(error?.message);
+            }
         },
         async delete(ctx) {
             const { id } = ctx.params;
 
-            return await authorModel.findByIdAndDelete(id);
+            try {
+                const deletedAuthor = await authorModel.findByIdAndDelete(id);
+                if (!deletedAuthor)
+                    return responseHelper.notFound("Author is not found.");
+
+                return responseHelper.ok(null, "Author is deleted.");
+            } catch (error) {
+                console.log("author delete error => ", error?.message);
+
+                return responseHelper.unknown(error?.message);
+            }
         },
     },
 };

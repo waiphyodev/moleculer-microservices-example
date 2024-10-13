@@ -20,11 +20,32 @@ router.post("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     const payload = {
         id: req.params.id,
-    }
+    };
 
     const result = await req.app.locals.broker.call("author.detail", payload);
 
     return res.status(result.code).json(result);
-})
+});
+
+router.put("/:id", async (req, res) => {
+    const payload = {
+        id: req.params.id,
+        body: req.body,
+    };
+
+    const result = await req.app.locals.broker.call("author.update", payload);
+
+    return res.status(result.code).json(result);
+});
+
+router.delete("/:id", async (req, res) => {
+    const payload = {
+        id: req.params.id,
+    };
+
+    const result = await req.app.locals.broker.call("author.delete", payload);
+
+    return res.status(result.code).json(result);
+});
 
 module.exports = router;
