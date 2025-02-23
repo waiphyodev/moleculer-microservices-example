@@ -10,8 +10,10 @@
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "ioredis": "^5.5.0",
     "moleculer": "^0.14.34",
     "nats": "^2.28.2"
   }

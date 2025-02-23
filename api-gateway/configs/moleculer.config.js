@@ -1,14 +1,16 @@
+const { randomBytes } = require("crypto")
+
 module.exports = {
     // check here https://moleculer.services/docs/0.14/configuration#Full-options-object
     namespace: process.env.NAMESPACE,
-    nodeID: process.env.NODE_ID,
+    nodeID: process.env.NODE_ID || randomBytes(32).toString("base64"),
 
     logger: true,
     logLevel: "info",
     logFormatter: "default",
     logObjectPrinter: null,
 
-    transporter: process.env.NATS_URL,
+    transporter: process.env.TRANSPORTER_URL,
 
     requestTimeout: 5000,
     retryPolicy: {
@@ -59,7 +61,7 @@ module.exports = {
         packetLogFilter: ["HEARTBEAT"],
     },
 
-    uidGenerator: null,
+    uidGenerator: () => randomBytes(32).toString("base64"),
 
     errorHandler: null,
 
