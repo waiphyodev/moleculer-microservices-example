@@ -10,7 +10,6 @@
   "description": "",
   "dependencies": {
     "dotenv": "^16.4.5",
-    "ioredis": "^5.5.0",
     "moleculer": "^0.14.34",
     "mongoose": "^8.7.1",
     "nats": "^2.28.2"

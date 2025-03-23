@@ -1,16 +1,48 @@
-const { randomBytes } = require("crypto")
+const { randomBytes } = require("crypto");
 
 module.exports = {
     // check here https://moleculer.services/docs/0.14/configuration#Full-options-object
     namespace: process.env.NAMESPACE,
-    nodeID: process.env.NODE_ID || randomBytes(32).toString("base64"),
+    nodeID: process.env.NODE_ID || randomBytes(8).toString("base64"),
 
-    logger: true,
-    logLevel: "info",
-    logFormatter: "default",
-    logObjectPrinter: null,
+    logger: [
+        {
+            type: "Console",
+            options: {
+                level: "info",
+                formatter: "{timestamp} {level} {nodeID}: {msg}",
+            },
+        },
+        {
+            type: "File",
+            options: {
+                level: "info",
+                folder: "../service-logs",
+                filename: "info-{date}.log",
+                formatter: "{timestamp} {level} {nodeID}: {msg}",
+            },
+        },
+        {
+            type: "File",
+            options: {
+                level: "warn",
+                folder: "../service-logs",
+                filename: "warn-{date}.log",
+                formatter: "{timestamp} {level} {nodeID}: {msg}",
+            },
+        },
+        {
+            type: "File",
+            options: {
+                level: "error",
+                folder: "../service-logs",
+                filename: "error-{date}.log",
+                formatter: "{timestamp} {level} {nodeID}: {msg}",
+            },
+        },
+    ],
 
-    transporter: process.env.TRANSPORTER_URL,
+    transporter: process.env.TRANSPORTER_URI,
 
     requestTimeout: 5000,
     retryPolicy: {
@@ -61,7 +93,7 @@ module.exports = {
         packetLogFilter: ["HEARTBEAT"],
     },
 
-    uidGenerator: () => randomBytes(32).toString("base64"),
+    uidGenerator: () => randomBytes(8).toString("base64"),
 
     errorHandler: null,
 
