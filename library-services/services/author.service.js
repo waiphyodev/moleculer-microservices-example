@@ -1,5 +1,8 @@
 const authorModel = require("../models/author.model");
 const responseHelper = require("../helpers/response.helper");
+const moleculerBroker = require("../brokers/moleculer.broker");
+
+const logger = moleculerBroker.logger;
 
 const services = {
     name: "author",
@@ -10,7 +13,7 @@ const services = {
 
                 return responseHelper.ok(authorList);
             } catch (error) {
-                console.log("author list error => ", error?.message);
+                logger.error("author list error => ", error?.message);
 
                 return responseHelper.unknown(error?.message);
             }
@@ -25,7 +28,7 @@ const services = {
 
                 return responseHelper.ok(author);
             } catch (error) {
-                console.log("author detail error => ", error?.message);
+                logger.error("author detail error => ", error?.message);
 
                 return responseHelper.unknown(error?.message);
             }
@@ -39,7 +42,7 @@ const services = {
 
                 return responseHelper.created("Author is created.");
             } catch (error) {
-                console.log("author create error => ", error?.message);
+                logger.error("author create error => ", error?.message);
 
                 return responseHelper.unknown(error?.message);
             }
@@ -58,7 +61,7 @@ const services = {
 
                 return responseHelper.ok(null, "Author is updated.");
             } catch (error) {
-                console.log("author update error => ", error?.message);
+                logger.error("author update error => ", error?.message);
 
                 return responseHelper.unknown(error?.message);
             }
@@ -73,7 +76,7 @@ const services = {
 
                 return responseHelper.ok(null, "Author is deleted.");
             } catch (error) {
-                console.log("author delete error => ", error?.message);
+                logger.error("author delete error => ", error?.message);
 
                 return responseHelper.unknown(error?.message);
             }

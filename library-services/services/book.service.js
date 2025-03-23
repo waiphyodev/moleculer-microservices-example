@@ -1,6 +1,9 @@
 const bookModel = require("../models/book.model");
 const responseHelper = require("../helpers/response.helper");
 const authorModel = require("../models/author.model");
+const moleculerBroker = require("../brokers/moleculer.broker");
+
+const logger = moleculerBroker.logger;
 
 const services = {
     name: "book",
@@ -11,7 +14,7 @@ const services = {
 
                 return responseHelper.ok(bookList);
             } catch (error) {
-                console.log("book list error => ", error?.message);
+                logger.error("book list error => ", error?.message);
 
                 return responseHelper.unknown(error?.message);
             }
@@ -31,7 +34,7 @@ const services = {
 
                 return responseHelper.ok(null, "Book is created.");
             } catch (error) {
-                console.log("book create error => ", error?.message);
+                logger.error("book create error => ", error?.message);
 
                 return responseHelper.unknown(error?.message);
             }
@@ -47,7 +50,7 @@ const services = {
 
                 return responseHelper.ok(existingBook);
             } catch (error) {
-                console.log("book detail error => ", error?.message);
+                logger.error("book detail error => ", error?.message);
 
                 return responseHelper.unknown(error?.message);
             }
@@ -69,7 +72,7 @@ const services = {
 
                 return responseHelper.ok(null, "Book is updated.");
             } catch (error) {
-                console.log("book update error => ", error?.message);
+                logger.error("book update error => ", error?.message);
 
                 return responseHelper.unknown(error?.message);
             }
@@ -85,7 +88,7 @@ const services = {
 
                 return responseHelper.ok(null, "Book is deleted.");
             } catch (error) {
-                console.log("book delete error => ", error?.message);
+                logger.error("book delete error => ", error?.message);
 
                 return responseHelper.unknown(error?.message);
             }
